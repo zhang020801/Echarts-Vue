@@ -1,13 +1,20 @@
 <template>
-  <div>sellerpage 组件</div>
+  <div class="com-page">
+    <seller></seller>
+  </div>
+
 </template>
 
 <script>
+  import Seller from "../components/Seller";
   export default {
-    name: "SellerPage"
+    name: "SellerPage",
+    components: {
+      Seller
+    }
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped >
 
 </style>

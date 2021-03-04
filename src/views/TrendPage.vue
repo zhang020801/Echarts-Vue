@@ -5,15 +5,17 @@
 </template>
 
 <script>
-  import Trend from "../components/Trend";
-  export default {
-    name: "TrendPage",
-    components:{
-      Trend
-    }
+import Trend from '@/components/Trend'
+export default {
+  data () {
+    return {}
+  },
+  methods: {},
+  components: {
+    trend: Trend
   }
+}
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
 </style>

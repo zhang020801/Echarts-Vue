@@ -9,7 +9,7 @@
       </span>
       <span class="title">电商平台实时监控系统</span>
       <div class="title-right">
-        <img :src="themeSrc" class="qiehuan" @click="handleChangeTheme" alt="">
+        <img :src="themeSrc" class="qiehuan" @click="handleChangeTheme">
         <span class="datetime">2049-01-01 00:00:00</span>
       </div>
     </header>
@@ -73,14 +73,14 @@
 </template>
 
 <script>
-import Hot from '../components/Hot.vue'
-import Map from '../components/Map.vue'
-import Rank from '../components/Rank.vue'
-import Seller from '../components/Seller.vue'
-import Stock from '../components/Stock.vue'
-import Trend from '../components/Trend.vue'
+import Hot from '@/components/Hot.vue'
+import Map from '@/components/Map.vue'
+import Rank from '@/components/Rank.vue'
+import Seller from '@/components/Seller.vue'
+import Stock from '@/components/Stock.vue'
+import Trend from '@/components/Trend.vue'
 import { mapState } from 'vuex'
-import { getThemeValue } from '../utils/theme_utils'
+import { getThemeValue } from '@/utils/theme_utils'
 export default {
   created () {
     // 注册接收到数据的回调函数
@@ -107,12 +107,12 @@ export default {
   methods: {
     changeSize (chartName) {
       // 1.改变fullScreenStatus的数据
-      this.fullScreenStatus[chartName] = !this.fullScreenStatus[chartName]
+      // this.fullScreenStatus[chartName] = !this.fullScreenStatus[chartName]
       // 2.需要调用每一个图表组件的screenAdapter的方法
-      this.$refs[chartName].screenAdapter()
-      this.$nextTick(() => {
-        this.$refs[chartName].screenAdapter()
-      })
+      // this.$refs[chartName].screenAdapter()
+      // this.$nextTick(() => {
+      //   this.$refs[chartName].screenAdapter()
+      // })
       // 将数据发送给服务端
       const targetValue = !this.fullScreenStatus[chartName]
       this.$socket.send({
@@ -135,7 +135,7 @@ export default {
     },
     handleChangeTheme () {
       // 修改VueX中数据
-      this.$store.commit('changeTheme')
+      // this.$store.commit('changeTheme')
       this.$socket.send({
         action: 'themeChange',
         socketType: 'themeChange',
@@ -157,26 +157,18 @@ export default {
   },
   computed: {
     logoSrc () {
-      if(this.theme){
-        return '/static/img/' + getThemeValue(this.theme).logoSrc
-      }
+      return '/static/img/' + getThemeValue(this.theme).logoSrc
     },
     headerSrc () {
-      if(this.theme){
-        return '/static/img/' + getThemeValue(this.theme).headerBorderSrc
-      }
+      return '/static/img/' + getThemeValue(this.theme).headerBorderSrc
     },
     themeSrc () {
-      if(this.theme){
-        return '/static/img/' + getThemeValue(this.theme).themeSrc
-      }
+      return '/static/img/' + getThemeValue(this.theme).themeSrc
     },
     containerStyle () {
-      if(this.theme){
-        return {
-          backgroundColor: getThemeValue(this.theme).backgroundColor,
-          color: getThemeValue(this.theme).titleColor
-        }
+      return {
+        backgroundColor: getThemeValue(this.theme).backgroundColor,
+        color: getThemeValue(this.theme).titleColor
       }
     },
     ...mapState(['theme'])

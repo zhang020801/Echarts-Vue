@@ -28,14 +28,24 @@
         titleFontSize: 0
       }
     },
+    created() {
+      this.$socket.registerCallBack('trendData',this.getData)
+    },
     mounted() {
       this.initChart()
-      this.getData()
+      // this.getData()
+      this.$socket.send({
+        action: 'getData',
+        socketType: 'trendData',
+        chartName: 'trend',
+        value: ''
+      })
       window.addEventListener('resize',this.screenAdapter)
       this.screenAdapter()
     },
     destroyed() {
       window.removeEventListener('resize',this.screenAdapter)
+      this.$socket.unRegisterBack('trendData')
     },
     computed:{
       selectTypes(){
@@ -90,9 +100,9 @@
         }
         this.chartInstance.setOption(initOption)
       },
-      async getData(){
+      async getData(ret){
         // await his.$http.get()
-        const {data: ret } = await this.$http.get('trend',)
+        // const {data: ret } = await this.$http.get('trend',)
         this.allData = ret
 
         this.updateChart()

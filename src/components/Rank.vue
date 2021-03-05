@@ -43,7 +43,7 @@ export default {
       this.chartInstance = this.$echarts.init(this.$refs.rank_ref, this.theme)
       const initOption = {
         title: {
-          text: '▎ 地区销售排行',
+          text: '💙 地区销售排行',
           left: 20,
           top: 20
         },

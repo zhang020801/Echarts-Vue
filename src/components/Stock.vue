@@ -42,7 +42,7 @@ export default {
       this.chartInstance = this.$echarts.init(this.$refs.stock_ref, this.theme)
       const initOption = {
         title: {
-          text: '▎库存和销量分析',
+          text: '🧡 库存和销量分析',
           left: 20,
           top: 20
         }

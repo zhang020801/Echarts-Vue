@@ -1,7 +1,7 @@
 <template>
   <div class="com-container">
     <div class="title" :style="comStyle">
-      <span>{{ '▎ ' +  showTitle }}</span>
+      <span>{{ '❤ ' +  showTitle }}</span>
       <span class="iconfont title-icon" :style="comStyle"  @click="showChoice = !showChoice">&#xe6eb;</span>
       <div class="select-con" v-show="showChoice" :style="marginStyle">
         <div class="select-item" v-for="item in selectTypes" :key="item.key" @click="handleSelect(item.key)">
